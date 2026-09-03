@@ -1,20 +1,20 @@
-{{ with .Site.Params.analytics }}
-  {{ if and .provider .id }}
-    {{ if eq .provider "cloudflare" }}
-      <!-- Cloudflare Web Analytics (Free, Privacy-First, No Cookies) -->
-      <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "{{ .id }}"}'></script>
-    {{ else if eq .provider "ga4" }}
-      <!-- Google Analytics 4 (GA4) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id={{ .id }}"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{ .id }}');
-      </script>
-    {{ else if eq .provider "umami" }}
-      <!-- Umami Analytics -->
-      <script async src="https://cloud.umami.is/script.js" data-website-id="{{ .id }}"></script>
-    {{ end }}
+{{ $provider := site.Params.analytics.provider }}
+{{ $id := site.Params.analytics.id }}
+{{ if and $provider $id }}
+  {{ if eq $provider "cloudflare" }}
+    <!-- Cloudflare Web Analytics (Free, Privacy-First, No Cookies) -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "{{ $id }}"}'></script>
+  {{ else if eq $provider "ga4" }}
+    <!-- Google Analytics 4 (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ $id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ $id }}');
+    </script>
+  {{ else if eq $provider "umami" }}
+    <!-- Umami Analytics -->
+    <script async src="https://cloud.umami.is/script.js" data-website-id="{{ $id }}"></script>
   {{ end }}
 {{ end }}

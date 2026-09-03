@@ -45,5 +45,5 @@ paginate = 10
     twitterHandle = '@growstack'
 
   [params.analytics]
-    provider = ''
-    id = ''
+    provider = 'cloudflare'
+    id = 'e1dfe4ba4aed4e338df20cb5f5171640'
