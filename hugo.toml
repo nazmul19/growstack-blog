@@ -1,4 +1,5 @@
 baseURL = 'https://blog.growstack.tech/'
+languageCode = 'en-us'
 locale = 'en-us'
 title = 'GrowStack Technical Blog'
 summaryLength = 30
