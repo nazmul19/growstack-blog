@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ .Site.Title }} — Practical Engineering & Architecture Insights{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+<!-- Meta Description -->
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Summary }}{{ end }}">
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Fonts & Assets -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+{{ $style := resources.Get "css/main.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}">
+
+<!-- JavaScript -->
+{{ $script := resources.Get "js/main.js" | resources.Minify }}
+<script src="{{ $script.RelPermalink }}" defer></script>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Summary }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:image" content="{{ .Site.BaseURL }}{{ .Params.ogImage | default .Site.Params.seo.defaultImage }}">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Summary }}{{ end }}">
+<meta name="twitter:image" content="{{ .Site.BaseURL }}{{ .Params.ogImage | default .Site.Params.seo.defaultImage }}">
+
+<!-- RSS Feed Auto-Discovery -->
+<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .Site.BaseURL }}index.xml">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">

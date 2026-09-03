@@ -1,0 +1,92 @@
+{{ define "main" }}
+
+{{ partial "hero.html" . }}
+
+<div class="container">
+  <!-- Featured Article Section -->
+  {{ $posts := where .Site.RegularPages "Section" "blog" }}
+  {{ $featured := first 1 (where $posts "Params.featured" true) }}
+  {{ if not $featured }}
+    {{ $featured = first 1 $posts }}
+  {{ end }}
+
+  {{ range $featured }}
+  <section class="featured-section">
+    <div class="section-label">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+      Featured Article
+    </div>
+    
+    <article class="featured-card">
+      <div>
+        <div class="meta-row">
+          {{ range first 1 .Params.categories }}
+            <span class="category-badge">{{ . }}</span>
+          {{ end }}
+          <span class="meta-dot">&bull;</span>
+          <span>{{ .Date.Format "Jan 02, 2006" }}</span>
+          <span class="meta-dot">&bull;</span>
+          <span>{{ .ReadingTime }} min read</span>
+        </div>
+
+        <h2 class="featured-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        
+        <p class="featured-desc">{{ .Description | default .Summary }}</p>
+      </div>
+
+      <div class="author-foot">
+        <div class="author-info">
+          <div class="author-avatar">GS</div>
+          <span class="author-name">{{ .Params.author | default .Site.Params.author.name }}</span>
+        </div>
+        
+        <a href="{{ .RelPermalink }}" class="read-more-link">
+          Read Full Article
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
+    </article>
+  </section>
+  {{ range $featured }}
+    {{ $.Scratch.Set "featuredPermalink" .RelPermalink }}
+  {{ end }}
+  {{ end }}
+
+  <!-- Latest Articles Grid -->
+  <section class="articles-grid-section">
+    <div class="section-label">
+      Recent Engineering Articles
+    </div>
+
+    <div class="articles-grid">
+      {{ $featuredUrl := $.Scratch.Get "featuredPermalink" }}
+      {{ range $posts }}
+        {{ if ne .RelPermalink $featuredUrl }}
+        <article class="article-card">
+          <div class="meta-row">
+            {{ range first 1 .Params.categories }}
+              <span class="category-badge">{{ . }}</span>
+            {{ end }}
+            <span class="meta-dot">&bull;</span>
+            <span>{{ .ReadingTime }} min read</span>
+          </div>
+
+          <h3 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          
+          <p class="card-excerpt">{{ .Description | default .Summary }}</p>
+
+          <div class="author-foot">
+            <span style="font-size: 0.85rem; color: var(--text-muted);">{{ .Date.Format "Jan 02, 2006" }}</span>
+            <a href="{{ .RelPermalink }}" class="read-more-link">Read &rarr;</a>
+          </div>
+        </article>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- Bottom CTA Banner -->
+  {{ partial "cta.html" . }}
+</div>
+
+{{ end }}

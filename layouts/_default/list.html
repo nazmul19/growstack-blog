@@ -1,0 +1,43 @@
+{{ define "main" }}
+
+<div class="container" style="padding-top: 3.5rem; padding-bottom: 4rem;">
+  <header style="margin-bottom: 3rem; text-align: center;">
+    <div class="hero-pill">
+      <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"></path></svg>
+      Topic / Archive
+    </div>
+    <h1 class="hero-title" style="font-size: 2.5rem;">{{ .Title }}</h1>
+    <p class="hero-subtitle" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+      Articles and guides categorized under {{ .Title }}.
+    </p>
+  </header>
+
+  <div class="articles-grid">
+    {{ range .Pages }}
+    <article class="article-card">
+      <div class="meta-row">
+        {{ range first 1 .Params.categories }}
+          <span class="category-badge">{{ . }}</span>
+        {{ end }}
+        <span class="meta-dot">&bull;</span>
+        <span>{{ .ReadingTime }} min read</span>
+      </div>
+
+      <h3 class="card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      
+      <p class="card-excerpt">{{ .Description | default .Summary }}</p>
+
+      <div class="author-foot">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">{{ .Date.Format "Jan 02, 2006" }}</span>
+        <a href="{{ .RelPermalink }}" class="read-more-link">Read &rarr;</a>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+  <div style="margin-top: 4rem;">
+    {{ partial "cta.html" . }}
+  </div>
+</div>
+
+{{ end }}

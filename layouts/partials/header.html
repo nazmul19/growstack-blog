@@ -1,0 +1,41 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- Brand Logo -->
+    <a href="{{ .Site.Params.businessURL | default "https://growstack.tech" }}" class="brand-logo" title="GrowStack — Software Engineering Services">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 22L14 6L20 16L28 4" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20 26H28V18" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>GrowStack</span>
+      <span class="brand-badge">Blog</span>
+    </a>
+
+    <!-- Main Navigation Menu -->
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="/" class="nav-link {{ if .IsHome }}active{{ end }}">Blog</a></li>
+      <li><a href="/categories/" class="nav-link {{ if eq .Type "categories" }}active{{ end }}">Topics</a></li>
+      <li><a href="/about/" class="nav-link {{ if eq .RelPermalink "/about/" }}active{{ end }}">About GrowStack</a></li>
+    </ul>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <!-- Dark / Light Theme Toggle -->
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+      </button>
+
+      <!-- Business CTA -->
+      <a href="{{ .Site.Params.contactURL | default "https://growstack.tech" }}" class="btn-primary" target="_blank" rel="noopener">
+        Work With Me
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Toggle Navigation Menu">
+        &#9776;
+      </button>
+    </div>
+  </div>
+</header>

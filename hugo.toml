@@ -1,0 +1,48 @@
+baseURL = 'https://blog.growstack.tech/'
+locale = 'en-us'
+title = 'GrowStack Technical Blog'
+summaryLength = 30
+paginate = 10
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+
+[permalinks]
+  blog = '/blog/:slug/'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = 'dracula'
+    noClasses = false
+
+[params]
+  businessURL = 'https://growstack.tech'
+  contactURL = 'https://growstack.tech'
+  siteName = 'GrowStack Blog'
+  description = 'Practical engineering insights on backend systems, APIs, SaaS architecture, database design, and software performance.'
+  
+  [params.author]
+    name = 'GrowStack Engineering'
+    role = 'Software Engineering & Architecture'
+    bio = 'Building fast, reliable, scalable backend systems and SaaS products.'
+    avatar = '/images/avatar.png'
+  
+  [params.social]
+    github = 'https://github.com/growstack'
+    linkedin = 'https://linkedin.com/company/growstack'
+    rss = '/index.xml'
+
+  [params.seo]
+    defaultImage = '/images/og-default.png'
+    twitterHandle = '@growstack'
+
+  [params.analytics]
+    provider = ''
+    id = ''

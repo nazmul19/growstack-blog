@@ -1,0 +1,10 @@
+<div class="cta-banner">
+  <h3 class="cta-title">{{ .Params.ctaTitle | default "Need help building or improving your software?" }}</h3>
+  <p class="cta-text">
+    {{ .Params.ctaText | default "GrowStack helps ambitious teams and founders design, build, and optimize production-grade backend systems, APIs, and SaaS products." }}
+  </p>
+  <a href="{{ .Site.Params.contactURL | default .Site.Params.businessURL }}" class="btn-primary" target="_blank" rel="noopener">
+    {{ .Params.ctaButton | default "Work with GrowStack" }}
+    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+  </a>
+</div>

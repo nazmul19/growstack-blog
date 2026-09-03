@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+<div class="container" style="padding-top: 3.5rem; padding-bottom: 4rem;">
+  <header style="margin-bottom: 3rem; text-align: center;">
+    <h1 class="hero-title" style="font-size: 2.5rem;">Explore {{ .Title }}</h1>
+    <p class="hero-subtitle" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+      Browse GrowStack technical articles organized by technical domain.
+    </p>
+  </header>
+
+  <div class="articles-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+    {{ range .Data.Terms.ByCount }}
+    <a href="{{ .Page.RelPermalink }}" class="article-card" style="text-decoration: none; align-items: center; text-align: center; justify-content: center;">
+      <h3 class="card-title" style="color: var(--accent-primary); margin-bottom: 0.5rem;">{{ .Page.Title }}</h3>
+      <span style="font-size: 0.9rem; color: var(--text-secondary); font-weight: 500;">{{ .Count }} article{{ if gt .Count 1 }}s{{ end }}</span>
+    </a>
+    {{ end }}
+  </div>
+
+  <div style="margin-top: 4rem;">
+    {{ partial "cta.html" . }}
+  </div>
+</div>
+
+{{ end }}
