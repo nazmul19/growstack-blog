@@ -2,6 +2,7 @@ baseURL = 'https://blog.growstack.tech/'
 languageCode = 'en-us'
 locale = 'en-us'
 title = 'GrowStack Technical Blog'
+googleAnalytics = 'G-FFXPSXJQQ6'
 summaryLength = 30
 paginate = 10
 
@@ -28,6 +29,7 @@ paginate = 10
   contactURL = 'https://growstack.tech'
   siteName = 'GrowStack Blog'
   description = 'Practical engineering insights on backend systems, APIs, SaaS architecture, database design, and software performance.'
+  ga4id = 'G-FFXPSXJQQ6'
   
   [params.author]
     name = 'GrowStack Engineering'
@@ -45,5 +47,5 @@ paginate = 10
     twitterHandle = '@growstack'
 
   [params.analytics]
-    provider = 'cloudflare'
-    id = 'e1dfe4ba4aed4e338df20cb5f5171640'
+    cloudflaretoken = 'e1dfe4ba4aed4e338df20cb5f5171640'
+    ga4id = 'G-FFXPSXJQQ6'
